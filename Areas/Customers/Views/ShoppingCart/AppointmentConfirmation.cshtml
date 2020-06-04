@@ -1,0 +1,19 @@
+﻿@model ECommerceProduct.Models.ViewModels.ShoppingCartViewModel
+@{
+    ViewData["Title"] = "AppointmentConfirmation";
+}
+
+<br />
+
+<h2 class="text-black-50">Appointment Confirmation</h2>
+<div class="form-text" style="color:darkturquoise">
+    Your Appoitment is submitted. one of Our Sales Rep would be in touch with you shortly!
+    You feel free to contact us any time.
+</div>
+<br />
+<partial name="~/Views/Shared/_AppointmentCustomerDetails.cshtml" model="Model.Appointments" />
+<br />
+<partial name="~/Views/Shared/AppointmentProductsDetails.cshtml" model="Model.Products" />
+<a asp-area="Customers" asp-controller="Home" asp-action="Index" class="btn btn-success"> Bakc To Products</a>
+
+

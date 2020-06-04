@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ECommerceProduct.Models.Products>
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+<br />
+
+<div class="row">
+    <div class="cols-6">
+        <h2 class="text-info">Product  List</h2>
+    </div>
+    <div class="col-12 text-right">
+        <a asp-action="create" class="btn btn-info">
+        <i class="fas fa-plus"></i>&nbsp; New Product  </a>
+    </div>
+</div>
+<br />
+<div>
+    <table class="table-striped border col-12">
+        <tr>
+            <th class="table-info">
+                @Html.DisplayNameFor(m => m.Name)
+            </th>
+            <th class="table-info">
+                @Html.DisplayNameFor(m => m.Price)
+            </th>
+            <th class="table-info">
+                @Html.DisplayNameFor(m => m.Available)
+            </th>
+            <th class="table-info">
+                @Html.DisplayNameFor(m => m.ProductType)
+            </th>
+            <th class="table-info">
+                @Html.DisplayNameFor(m => m.SpecialTags)
+            </th>            
+            <th>
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(m => item.Name)
+        </td>
+        <td>
+            @String.Format("{0:C}", item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.Available)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.ProductType.Name)
+        </td>
+        <td>
+            @if (!item.SpecialTags.Name.Equals("--None--"))
+            {
+                @Html.DisplayFor(m => item.SpecialTags.Name)
+            }
+        </td>
+            @* <partial name="_ButtonPartial" model="item.Id"/>*@
+        <td style="width:150px">
+            <div class="btn-group" role="group">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">
+                    <i class="fas fa-list"></i>
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </div>
+        </td>
+    </tr>
+        }
+    </table>
+</div>
+
